@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="container w-50 p-3">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
+
+{% if user.is_authenticated %}
+  <h1>Hello, world! How are you? What are you doing?</h1>
+{% else %}
+  <div class="container w-50 p-3">
+    <div class="container p-3 mb-2 bg-info-subtle text-info-emphasis">
+      <h2><strong>Please login to continue</strong></h2>
+    </div>
+
+    <form method="POST" action="{% url 'home' %}">
+      {% csrf_token %}
+      
+      <div class="mb-3">
+        <label for="username" class="form-label">User Name</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      
+      <button type="submit" class="btn btn-secondary">Login</button>
+      <br>
+      <br>
+      <p><a href="{% url 'register' %}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">New User? Register here!</a></p>
+
+      
+                 
+       
+   
+      
+    </form>
+    
+  </div>
+{% endif %}
+
+{% endblock content %}
