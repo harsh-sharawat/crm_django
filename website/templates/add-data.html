@@ -4,7 +4,26 @@
 
 {% block content %}
 
-<p>adding new users</p>
+{% comment %} <p>adding new users</p> {% endcomment %}
+
+<div class ='container w-50'>
+    <div class="container p-3 mb-2 bg-info-subtle text-info-emphasis">
+        <h2><strong>Add new data</strong></h2>
+      </div>
+  
+    <form action="" method = 'POST'>
+    {% csrf_token %}
+
+     {% if form.errors %}
+        {% for error in form.errors %}
+        
+            {{error}}
+        {% endfor %}
+     {% endif %}
+     {{form.as_p}}
+    <button type = 'submit' class = "btn btn-secondary">ADD</button>
+    </form>
+</div>
 
 
 {% endblock content %}

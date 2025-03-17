@@ -16,39 +16,43 @@
   {% endfor %} 
 {% endif %} 
 {% if user.is_authenticated %}
-<h1>Hello, {{user.first_name}} {{user.last_name}}</h1>
+<div class="container w-80 p-3">
+  <div class="container p-3 mb-2 bg-info-subtle text-info-emphasis">
+    <h2><strong>Hello, {{user.first_name}} {{user.last_name}}</strong></h2>
+  </div>
+    
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">First name</th>
-      <th scope="col">Last name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Address</th>
-      <th scope="col">Zipcode</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for row in data %}
-    <tr>
-      <th scope="row">{{row.id}}</th>
-      <td>{{row.first_name}}</td>
-      <td>{{row.last_name}}</td>
-      <td>{{row.email}}</td>
-      <td>{{row.phone}}</td>
-      <td>{{row.address}}</td>
-      <td>{{row.zipcode}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    <table class="table table-success table-striped table-hover table-bordered border-primary">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Address</th>
+          <th scope="col">Zipcode</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+        <tr class= "cursor-pointer">
+          <th scope="row">{{row.id}}</th>
+          <td>{{row.first_name}}</td>
+          <td>{{row.last_name}}</td>
+          <td>{{row.email}}</td>
+          <td>{{row.phone}}</td>
+          <td>{{row.address}}</td>
+          <td>{{row.zipcode}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-<a href="{% url 'add_data' %}">
-  <button type="submit" class="btn btn-secondary">Add Data</button>
-</a>
-
+    <a href="{% url 'add_data' %}">
+      <button type="submit" class="btn btn-secondary">Add Data</button>
+    </a>
+  </div>
 {% else %}
 <div class="container w-50 p-3">
   <div class="container p-3 mb-2 bg-info-subtle text-info-emphasis">

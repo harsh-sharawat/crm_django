@@ -1,6 +1,8 @@
 from django.contrib.auth.forms import  UserCreationForm
 
-from django import forms 
+from django import forms
+from .models import Record
+# from django.forms import
 from django.contrib.auth.models import User
 
 
@@ -37,4 +39,19 @@ class Registration_form(UserCreationForm):
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'	
 
 
+class Add_data(forms.ModelForm):
+    class Meta:
+        model = Record
+        fields = ['first_name','last_name','email','address','phone','zipcode']
+    def __init__(self, *args, **kwargs):
+        super(Add_data, self).__init__(*args, **kwargs)
 
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+            self.fields[field].widget.attrs['placeholder'] = field
+            self.fields[field].label = ""
+            
+            
+
+
+        

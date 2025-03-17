@@ -8,7 +8,7 @@ from django.contrib import messages
 
 from django.contrib.auth.models import User
 
-from .forms import Registration_form
+from .forms import Registration_form,Add_data
 
 from .models import Record
 
@@ -90,6 +90,17 @@ def add_data(request):
     if not request.user.is_authenticated:
         return redirect('home')
     
+    if request.method == "POST":
+        form = Add_data(request.POST)
+
+        f = form.save(commit=False)
+        f.user = request.user
+        f.save()
+        return redirect('home')
+    else:
+        form = Add_data()
 
     
-    return render(request , 'add-data.html')
+
+    
+    return render(request , 'add-data.html', {'form':form})
