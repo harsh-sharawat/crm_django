@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+detailed record
+{% endblock title %}
+{% block content %}
+
+<div class ='container w-50'>
+
+    <div class="card">
+        <div class="card-header">
+          Featured
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{data.first_name}} {{data.last_name}}</h5>
+          <p class="card-text"> 
+                                
+                              Email:  {{data.email}}<br>
+                              Address:  {{data.address}} <br>
+                              Phone:  {{data.phone}} <br>
+                            
+                              Zipcode:  {{data.zipcode}} <br>
+                              Created at:  {{data.created_at}}</p>
+          <a href="{% url 'edit-record' data.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'delete-record' data.id %}" class="btn btn-primary">Delete</a>
+          <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+        
+        </div>
+      </div>
+    
+    
+</div>
+
+
+
+
+{% endblock content %}
+
+

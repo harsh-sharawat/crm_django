@@ -104,3 +104,46 @@ def add_data(request):
 
     
     return render(request , 'add-data.html', {'form':form})
+
+@login_required
+def view_record(request, pk):
+
+    record = Record.objects.get(id = pk)
+
+    if request.user != record.user:
+        messages.success(request, "this record does not exists in you data")
+        return redirect('home')
+    
+    return render(request,'view-record.html',{'data':record})
+
+
+@login_required
+def delete_record(request, pk):
+    target = Record.objects.get(id = pk)
+    if request.user != target.user:
+        messages.success(request, "this record does not exists in you data")
+        return redirect('home')
+
+    target.delete()
+
+    messages.success(request, "Record deleted successfully!")
+
+    return redirect('home')
+
+
+@login_required
+def edit_record(request, pk):
+    record = Record.objects.get(id = pk)
+    if(record.user!= request.user):
+        messages.success(request, "this record does not exists in you data")
+        return redirect('home')
+    
+    form = Add_data(request.POST or None , instance = record)
+
+    if(request.method == 'POST'):
+        form.save()
+        messages.success(request, "Data updated successfully!")
+        return redirect('home')
+    
+    return render(request, 'edit_record.html', {'form': form})
+        

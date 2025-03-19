@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}edit record{% endblock title %}
+{% block content %}
+
+<div class ='container w-50'>
+    <div class="container p-3 mb-2 bg-info-subtle text-info-emphasis">
+        <h2><strong>Edit data</strong></h2>
+      </div>
+  
+    <form action="" method = 'POST'>
+    {% csrf_token %}
+
+     {% if form.errors %}
+        {% for error in form.errors %}
+        
+            {{error}}
+        {% endfor %}
+     {% endif %}
+     {{form.as_p}}
+    <button type = 'submit' class = "btn btn-secondary">Save</button>
+    </form>
+</div>
+
+
+
+
+{% endblock content %}

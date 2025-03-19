@@ -35,9 +35,10 @@
         </tr>
       </thead>
       <tbody>
+        
         {% for row in data %}
         <tr class= "cursor-pointer">
-          <th scope="row">{{row.id}}</th>
+          <th scope="row"><a href="{% url 'view-record' row.id %}">{{forloop.counter}}</a></th>
           <td>{{row.first_name}}</td>
           <td>{{row.last_name}}</td>
           <td>{{row.email}}</td>
